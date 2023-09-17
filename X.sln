@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31402.337
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "X", "X\X.vcxproj", "{6682BFD4-C79F-49BD-A114-6EE8FB79E8C3}"
 EndProject
@@ -20,6 +20,16 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VGP332", "VGP332", "{146A795E-C8E7-4258-9AD4-8E45F8B0F299}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pathfinding", "Pathfinding\Pathfinding.vcxproj", "{F1093807-7046-4870-B822-4E83C9B6A6B6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AI", "AI\AI.vcxproj", "{B27272EB-4949-4730-B191-14DC2C0BB94A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FSM", "FSM\FSM.vcxproj", "{0E7C4BF8-A035-40E9-8B92-E5C786DADE59}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Steering", "Steering\Steering.vcxproj", "{CD8FBDA8-6904-4509-99BD-0A0BF3BF577C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Perception", "Perception\Perception.vcxproj", "{11ECE7C2-2B76-4C4B-92E5-00237EB90760}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DecisionMaking", "DecisionMaking\DecisionMaking.vcxproj", "{1F0E1644-5754-4A28-AA3C-C860FC255AB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +87,46 @@ Global
 		{F1093807-7046-4870-B822-4E83C9B6A6B6}.Release|x64.Build.0 = Release|x64
 		{F1093807-7046-4870-B822-4E83C9B6A6B6}.Release|x86.ActiveCfg = Release|Win32
 		{F1093807-7046-4870-B822-4E83C9B6A6B6}.Release|x86.Build.0 = Release|Win32
+		{B27272EB-4949-4730-B191-14DC2C0BB94A}.Debug|x64.ActiveCfg = Debug|x64
+		{B27272EB-4949-4730-B191-14DC2C0BB94A}.Debug|x64.Build.0 = Debug|x64
+		{B27272EB-4949-4730-B191-14DC2C0BB94A}.Debug|x86.ActiveCfg = Debug|Win32
+		{B27272EB-4949-4730-B191-14DC2C0BB94A}.Debug|x86.Build.0 = Debug|Win32
+		{B27272EB-4949-4730-B191-14DC2C0BB94A}.Release|x64.ActiveCfg = Release|x64
+		{B27272EB-4949-4730-B191-14DC2C0BB94A}.Release|x64.Build.0 = Release|x64
+		{B27272EB-4949-4730-B191-14DC2C0BB94A}.Release|x86.ActiveCfg = Release|Win32
+		{B27272EB-4949-4730-B191-14DC2C0BB94A}.Release|x86.Build.0 = Release|Win32
+		{0E7C4BF8-A035-40E9-8B92-E5C786DADE59}.Debug|x64.ActiveCfg = Debug|x64
+		{0E7C4BF8-A035-40E9-8B92-E5C786DADE59}.Debug|x64.Build.0 = Debug|x64
+		{0E7C4BF8-A035-40E9-8B92-E5C786DADE59}.Debug|x86.ActiveCfg = Debug|Win32
+		{0E7C4BF8-A035-40E9-8B92-E5C786DADE59}.Debug|x86.Build.0 = Debug|Win32
+		{0E7C4BF8-A035-40E9-8B92-E5C786DADE59}.Release|x64.ActiveCfg = Release|x64
+		{0E7C4BF8-A035-40E9-8B92-E5C786DADE59}.Release|x64.Build.0 = Release|x64
+		{0E7C4BF8-A035-40E9-8B92-E5C786DADE59}.Release|x86.ActiveCfg = Release|Win32
+		{0E7C4BF8-A035-40E9-8B92-E5C786DADE59}.Release|x86.Build.0 = Release|Win32
+		{CD8FBDA8-6904-4509-99BD-0A0BF3BF577C}.Debug|x64.ActiveCfg = Debug|x64
+		{CD8FBDA8-6904-4509-99BD-0A0BF3BF577C}.Debug|x64.Build.0 = Debug|x64
+		{CD8FBDA8-6904-4509-99BD-0A0BF3BF577C}.Debug|x86.ActiveCfg = Debug|Win32
+		{CD8FBDA8-6904-4509-99BD-0A0BF3BF577C}.Debug|x86.Build.0 = Debug|Win32
+		{CD8FBDA8-6904-4509-99BD-0A0BF3BF577C}.Release|x64.ActiveCfg = Release|x64
+		{CD8FBDA8-6904-4509-99BD-0A0BF3BF577C}.Release|x64.Build.0 = Release|x64
+		{CD8FBDA8-6904-4509-99BD-0A0BF3BF577C}.Release|x86.ActiveCfg = Release|Win32
+		{CD8FBDA8-6904-4509-99BD-0A0BF3BF577C}.Release|x86.Build.0 = Release|Win32
+		{11ECE7C2-2B76-4C4B-92E5-00237EB90760}.Debug|x64.ActiveCfg = Debug|x64
+		{11ECE7C2-2B76-4C4B-92E5-00237EB90760}.Debug|x64.Build.0 = Debug|x64
+		{11ECE7C2-2B76-4C4B-92E5-00237EB90760}.Debug|x86.ActiveCfg = Debug|Win32
+		{11ECE7C2-2B76-4C4B-92E5-00237EB90760}.Debug|x86.Build.0 = Debug|Win32
+		{11ECE7C2-2B76-4C4B-92E5-00237EB90760}.Release|x64.ActiveCfg = Release|x64
+		{11ECE7C2-2B76-4C4B-92E5-00237EB90760}.Release|x64.Build.0 = Release|x64
+		{11ECE7C2-2B76-4C4B-92E5-00237EB90760}.Release|x86.ActiveCfg = Release|Win32
+		{11ECE7C2-2B76-4C4B-92E5-00237EB90760}.Release|x86.Build.0 = Release|Win32
+		{1F0E1644-5754-4A28-AA3C-C860FC255AB9}.Debug|x64.ActiveCfg = Debug|x64
+		{1F0E1644-5754-4A28-AA3C-C860FC255AB9}.Debug|x64.Build.0 = Debug|x64
+		{1F0E1644-5754-4A28-AA3C-C860FC255AB9}.Debug|x86.ActiveCfg = Debug|Win32
+		{1F0E1644-5754-4A28-AA3C-C860FC255AB9}.Debug|x86.Build.0 = Debug|Win32
+		{1F0E1644-5754-4A28-AA3C-C860FC255AB9}.Release|x64.ActiveCfg = Release|x64
+		{1F0E1644-5754-4A28-AA3C-C860FC255AB9}.Release|x64.Build.0 = Release|x64
+		{1F0E1644-5754-4A28-AA3C-C860FC255AB9}.Release|x86.ActiveCfg = Release|Win32
+		{1F0E1644-5754-4A28-AA3C-C860FC255AB9}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,19 +138,13 @@ Global
 		{E0B52AE7-E160-4D32-BF3F-910B785E5A8E} = {856ED680-E9A4-400F-ADFF-D3C492DCA608}
 		{4F150A30-CECB-49D1-8283-6A3F57438CF5} = {856ED680-E9A4-400F-ADFF-D3C492DCA608}
 		{F1093807-7046-4870-B822-4E83C9B6A6B6} = {146A795E-C8E7-4258-9AD4-8E45F8B0F299}
+		{B27272EB-4949-4730-B191-14DC2C0BB94A} = {7021208A-2477-419B-A0A3-A79CA757E822}
+		{0E7C4BF8-A035-40E9-8B92-E5C786DADE59} = {146A795E-C8E7-4258-9AD4-8E45F8B0F299}
+		{CD8FBDA8-6904-4509-99BD-0A0BF3BF577C} = {146A795E-C8E7-4258-9AD4-8E45F8B0F299}
+		{11ECE7C2-2B76-4C4B-92E5-00237EB90760} = {146A795E-C8E7-4258-9AD4-8E45F8B0F299}
+		{1F0E1644-5754-4A28-AA3C-C860FC255AB9} = {146A795E-C8E7-4258-9AD4-8E45F8B0F299}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2D84BED7-7031-4090-B4D3-57A9E4C0998B}
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 1
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://ptychan.visualstudio.com/
-		SccProjectUniqueName0 = X\\External\\ImGui\\ImGui.vcxproj
-		SccProjectTopLevelParentUniqueName0 = X.sln
-		SccProjectName0 = X/External/ImGui
-		SccAuxPath0 = https://ptychan.visualstudio.com
-		SccLocalPath0 = X\\External\\ImGui
-		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Mineral.cpp" />
+    <ClCompile Include="Peon.cpp" />
+    <ClCompile Include="VisualSensor.cpp" />
+    <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="Raven.cpp" />
+    <ClCompile Include="GoalWander.h">
+      <Filter>AtomicGoals</Filter>
+    </ClCompile>
+    <ClCompile Include="GoalWander.cpp">
+      <Filter>AtomicGoals</Filter>
+    </ClCompile>
+    <ClCompile Include="GoalSeekToPosition.cpp">
+      <Filter>AtomicGoals</Filter>
+    </ClCompile>
+    <ClCompile Include="GoalMoveToPosition.cpp">
+      <Filter>CompositeGoals</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Mineral.h" />
+    <ClInclude Include="TypeIds.h" />
+    <ClInclude Include="VisualSensor.h" />
+    <ClInclude Include="Peon.h" />
+    <ClInclude Include="Raven.h" />
+    <ClInclude Include="GoalSeekToPosition.h">
+      <Filter>AtomicGoals</Filter>
+    </ClInclude>
+    <ClInclude Include="GoalMoveToPosition.h">
+      <Filter>CompositeGoals</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="AtomicGoals">
+      <UniqueIdentifier>{06ef34b3-b976-4e94-8205-3d0e643470d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CompositeGoals">
+      <UniqueIdentifier>{b24bb976-7c70-4766-ad9f-8b195ad62926}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
