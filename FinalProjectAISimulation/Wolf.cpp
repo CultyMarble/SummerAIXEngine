@@ -1,5 +1,8 @@
-#include "Raven.h"
-#include "TypeIds.h"
+#include "TypeID.h"
+#include "Wolf.h"
+#include "WolfStates.h"
+
+#include "VisualSensor.h"
 
 extern float wanderJitter;
 extern float wanderRadius;
@@ -10,6 +13,29 @@ extern float viewAngle;
 
 namespace
 {
+    void WrapLocation(Wolf& agent)
+    {
+        const auto screenWidth = X::GetScreenWidth();
+        const auto screenHeight = X::GetScreenHeight();
+
+        if (agent.position.x <= 0.0f)
+        {
+            agent.position.x += screenWidth;
+        }
+        if (agent.position.x >= screenWidth)
+        {
+            agent.position.x -= screenWidth;
+        }
+        if (agent.position.y <= 0.0f)
+        {
+            agent.position.y += screenHeight;
+        }
+        if (agent.position.y >= screenHeight)
+        {
+            agent.position.y -= screenHeight;
+        }
+    }
+
     float ComputeImportance(const AI::Agent& agent, const AI::MemoryRecord& record)
     {
         float distance{};
@@ -26,7 +52,7 @@ namespace
             distanceScore = std::max(1000.0f - distance, 0.0f);
             return distanceScore;
             break;
-        case TypeID::MineralId:
+        case TypeID::CropID:
             distance = X::Math::Distance(agent.position, record.GetProperty<X::Math::Vector2>("lastSeenPosition"));
             distanceScore = std::max(10000.0f - distance, 0.0f);
             return distanceScore;
@@ -39,50 +65,77 @@ namespace
     }
 }
 
-Raven::Raven(AI::AIWorld& world)
-    : Agent(world, TypeID::SheepID)
+Wolf::Wolf(AI::AIWorld& world)
+    : Agent(world, TypeID::WolfID)
 {
 
 }
 
-void Raven::Load()
+void Wolf::Load()
 {
-    // Perception
-    mPerceptionModule = std::make_unique<AI::PerceptionModule>(*this, ComputeImportance);
-    mPerceptionModule->SetMemorySpan(3.0f);
+    // STATE MACHINE
+    mStateMachine = new AI::StateMachine<Wolf>(*this);
 
-    // Steering
+    mStateMachine->AddState<WanderToFindPreyState>();
+    mStateMachine->AddState<SeekAndEatState>();
+    mStateMachine->ChangeState((int)State::WanderToFindPrey);
+
     mSteeringModule = std::make_unique<AI::SteeringModule>(*this);
 
+    // STEERING MODULE
     mSeekBehavior = mSteeringModule->AddBehavior<AI::SeekBehavior>();
     mWanderBehavior = mSteeringModule->AddBehavior<AI::WanderBehavior>();
 
+    mSeekBehavior->SetActive(false);
     mWanderBehavior->SetActive(true);
 
+    mSeparationBehavior = mSteeringModule->AddBehavior<AI::SeparationBehavior>();
+    mSeparationBehavior->SetActive(true);
+
+    // PERCEPTION MODULE
+    mPerceptionModule = std::make_unique<AI::PerceptionModule>(*this, ComputeImportance);
+    mPerceptionModule->SetMemorySpan(3.0f);
+    mVisualSensor = mPerceptionModule->AddSensor<VisualSensor>();
+    mVisualSensor->targetType = TypeID::CropID;
+
+    // LOAD TEXTURE
     for (int i = 0; i < mTextureIDs.size(); ++i)
     {
         char name[128];
-        sprintf_s(name, "interceptor_%02i.png", i + 1);
+        sprintf_s(name, "dog_%02i.png", i + 1);
         mTextureIDs[i] = X::LoadTexture(name);
     }
 
-    float spriteWidth = static_cast<float>(X::GetSpriteWidth(mTextureIDs[0]));
-    radius = (spriteWidth * 0.5f) + 30.0f;
+    float spriteWidth = X::GetSpriteWidth(mTextureIDs[0]);
+    radius = (spriteWidth * 0.5f) + 10.0f;
 }
 
-void Raven::Unload()
+void Wolf::Unload()
 {
 
 }
 
-void Raven::Update(float deltaTime)
+void Wolf::ChangeState(State newState)
 {
+    mStateMachine->ChangeState((int)newState);
+}
+
+void Wolf::Update(float deltaTime)
+{
+    // STATE MACHINE
+    mStateMachine->Update(deltaTime);
+
+    // PERCEPTION MODULE
+    mVisualSensor->viewRange = viewRange;
+    mVisualSensor->viewHalfAngle = viewAngle * X::Math::kDegToRad;
+
+    mVisualSensor->targetType = TypeID::SheepID;
+
     mPerceptionModule->Update(deltaTime);
 
+    // STEERING MODULE
     if (mWanderBehavior->IsActive())
-    {
         mWanderBehavior->Setup(wanderRadius, wanderDistance, wanderJitter);
-    }
 
     const auto force = mSteeringModule->Calculate();
     const auto acceleration = force / mass;
@@ -90,44 +143,21 @@ void Raven::Update(float deltaTime)
     velocity += acceleration * deltaTime;
 
     if (X::Math::MagnitudeSqr(velocity) > 1.0f)
-    {
         heading = X::Math::Normalize(velocity);
-    }
 
     position += velocity * deltaTime;
 
-    const auto screenWidth = X::GetScreenWidth();
-    const auto screenHeight = X::GetScreenHeight();
-
-    if (position.x <= 0.0f)
-    {
-        position.x += screenWidth;
-    }
-    if (position.x >= screenWidth)
-    {
-        position.x -= screenWidth;
-    }
-    if (position.y <= 0.0f)
-    {
-        position.y += screenHeight;
-    }
-    if (position.y >= screenHeight)
-    {
-        position.y -= screenHeight;
-    }
+    WrapLocation(*this);
 
     const auto& memoryRecords = mPerceptionModule->GetMemoryRecords();
     for (auto& memory : memoryRecords)
     {
         auto pos = memory.GetProperty<X::Math::Vector2>("lastSeenPosition");
-        X::DrawScreenLine(position, pos, X::Colors::Red);
-
-        std::string score = std::to_string(memory.importance);
-        X::DrawScreenText(score.c_str(), pos.x, pos.y, 12.0f, X::Colors::Wheat);
+        X::DrawScreenLine(position, pos, X::Colors::Red); // Point to memory
     }
 }
 
-void Raven::Render()
+void Wolf::Render()
 {
     const float angle = atan2(-heading.x, heading.y) + X::Math::kPi;
     const float percent = angle / X::Math::kTwoPi;
@@ -136,8 +166,10 @@ void Raven::Render()
     X::DrawSprite(mTextureIDs[frame], position);
 }
 
-void Raven::ShowDebug(bool debug)
+void Wolf::ShowDebug(bool debug)
 {
     mSeekBehavior->ShowDebug(debug);
     mWanderBehavior->ShowDebug(debug);
+
+    mSeparationBehavior->ShowDebug(debug);
 }

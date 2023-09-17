@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="Sheep.cpp">
+      <Filter>Sheep</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualSensor.cpp" />
+    <ClCompile Include="Crop.cpp">
+      <Filter>Crop</Filter>
+    </ClCompile>
+    <ClCompile Include="Wolf.cpp">
+      <Filter>Wolf</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TypeID.h" />
+    <ClInclude Include="Sheep.h">
+      <Filter>Sheep</Filter>
+    </ClInclude>
+    <ClInclude Include="SheepStates.h">
+      <Filter>Sheep</Filter>
+    </ClInclude>
+    <ClInclude Include="VisualSensor.h" />
+    <ClInclude Include="Crop.h">
+      <Filter>Crop</Filter>
+    </ClInclude>
+    <ClInclude Include="Wolf.h">
+      <Filter>Wolf</Filter>
+    </ClInclude>
+    <ClInclude Include="WolfStates.h">
+      <Filter>Wolf</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Sheep">
+      <UniqueIdentifier>{c95a246a-d62d-4ab7-9c36-c0b830d8ba07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Crop">
+      <UniqueIdentifier>{f885ec17-7ab5-4c4c-a2c5-2f3eb0a851d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wolf">
+      <UniqueIdentifier>{5b6874e1-e2f1-47e2-8b04-01c6cc909b4e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

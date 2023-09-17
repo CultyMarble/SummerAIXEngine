@@ -6,7 +6,7 @@ extern float wanderRadius;
 extern float wanderDistance;
 
 Peon::Peon(AI::AIWorld& world)
-    : Agent(world, Types::PeonId)
+    : Agent(world, TypeID::SheepID)
 {
 
 }

@@ -11,7 +11,7 @@ void VisualSensor::Update(AI::Agent& agent, AI::MemoryRecords& memory, float del
             continue;
 
         // ignore type
-        if (targetType != Types::Invalid && targetType != entity->GetTypeID())
+        if (targetType != TypeID::InvalID && targetType != entity->GetTypeID())
             continue;
 
         // check if in view distance

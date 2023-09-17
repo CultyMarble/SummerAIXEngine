@@ -2,7 +2,7 @@
 #include "TypeIds.h"
 
 Mineral::Mineral(AI::AIWorld& world)
-    :AI::Entity(world, Types::MineralId)
+    :AI::Entity(world, TypeID::MineralId)
 {
 
 }

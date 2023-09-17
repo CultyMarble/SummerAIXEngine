@@ -17,18 +17,18 @@ namespace
         float distance{};
         float distanceScore{};
 
-        Types entityType = static_cast<Types>(record.GetProperty<int>("type"));
+        TypeID entityType = static_cast<TypeID>(record.GetProperty<int>("type"));
         switch (entityType)
         {
-        case Types::Invalid:
+        case TypeID::InvalID:
             return 0;
             break;
-        case Types::PeonId:
+        case TypeID::SheepID:
             distance = X::Math::Distance(agent.position, record.GetProperty<X::Math::Vector2>("lastSeenPosition"));
             distanceScore = std::max(1000.0f - distance, 0.0f);
             return distanceScore;
             break;
-        case Types::MineralId:
+        case TypeID::MineralId:
             distance = X::Math::Distance(agent.position, record.GetProperty<X::Math::Vector2>("lastSeenPosition"));
             distanceScore = std::max(10000.0f - distance, 0.0f);
             return distanceScore;
@@ -42,7 +42,7 @@ namespace
 }
 
 Peon::Peon(AI::AIWorld& world)
-    : Agent(world, Types::PeonId)
+    : Agent(world, TypeID::SheepID)
 {
 
 }
@@ -55,7 +55,7 @@ void Peon::Load()
     mVisualSensor = mPerceptionModule->AddSensor<VisualSensor>();
 
     // Set up target type
-    mVisualSensor->targetType = Types::MineralId;
+    mVisualSensor->targetType = TypeID::MineralId;
 
     mSteeringModule = std::make_unique<AI::SteeringModule>(*this);
 

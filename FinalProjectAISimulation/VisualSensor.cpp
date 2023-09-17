@@ -63,7 +63,6 @@ void VisualSensor::Update(AI::Agent& agent, AI::MemoryRecords& memory, float del
         }
     }
 
-    // DEBUG info
     auto fovStart = X::Math::Rotate(agent.heading * viewRange, -viewHalfAngle);
     auto fovEnd = X::Math::Rotate(agent.heading * viewRange, viewHalfAngle);
 

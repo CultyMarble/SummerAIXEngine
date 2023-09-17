@@ -13,9 +13,7 @@ void PerceptionModule::Update(float deltaTime)
 {
     // Update all the sensors
     for (auto& sensor : mSensors)
-    {
         sensor->Update(mAgent, mMemoryRecords, deltaTime);
-    }
 
     // remove old memory
     mMemoryRecords.erase(
@@ -29,9 +27,7 @@ void PerceptionModule::Update(float deltaTime)
 
     // calculate importance on remaining records
     for (auto& record : mMemoryRecords)
-    {
         record.importance = ComputeImportance(mAgent, record);
-    }
 
     // sort records by importance
     mMemoryRecords.sort(

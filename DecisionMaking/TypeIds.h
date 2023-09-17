@@ -1,9 +1,9 @@
 #pragma once
 
-enum Types
+enum TypeID
 {
-    Invalid = 0,
-    PeonId = 1,
+    InvalID = 0,
+    SheepID = 1,
     RavenId = 2,
     MineralId = 3,
 };

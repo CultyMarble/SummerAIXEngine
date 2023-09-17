@@ -141,7 +141,7 @@ bool GameLoop(float deltaTime)
 
     for (auto& peon : peons)
     {
-        auto neighbors = aiWorld.GetEntitiesInRange({ peon->position, 100.0f }, Types::PeonId);
+        auto neighbors = aiWorld.GetEntitiesInRange({ peon->position, 100.0f }, TypeID::SheepID);
         peon->neighbors.clear();
 
         for (auto& n : neighbors)

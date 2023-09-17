@@ -32,6 +32,8 @@ namespace AI
             mCurrentState->Enter(mAgent);
         }
 
+        State<AgentType>& GetCurrentState() { return &mCurrentState; }
+
     private:
         AgentType& mAgent = NULL;
         State<AgentType>* mCurrentState = nullptr;

@@ -20,6 +20,7 @@
 // Individual Behavior
 #include "ArriveBehavior.h"
 #include "SeekBehavior.h"
+#include "PursuitBehavior.h"
 #include "WanderBehavior.h"
 
 // Group Behavior
