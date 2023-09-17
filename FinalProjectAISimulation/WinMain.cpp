@@ -85,6 +85,12 @@ bool GameLoop(float deltaTime)
         for (auto& sheep : sheeps)
             sheep->ShowDebug(showDebug);
     }
+    ImGui::Text("Sheep Behaviour:");
+    ImGui::Text("Sheep will Daydream until hunger drop below 50");
+    ImGui::Text("Then it will wander to look for crop");
+    ImGui::Text("If it finds a crop it will seek to its position");
+    ImGui::Text("After eating the crop, sheep will wander to find for a location to DayDream");
+    ImGui::Text("The sheep always evade the wolf");
 
     ImGui::End();
 
